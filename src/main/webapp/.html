@@ -1,0 +1,167 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Superfund Comparison Calculator</title>
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" />
+    <link rel="stylesheet" href="/css/supercomparecalc.css" />
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script type="text/javascript" src="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript" src="http://fundfeecalculator.herokuapp.com/js/jquery.number.min.js"></script>
+    <script type="text/javascript" src="http://fundfeecalculator.herokuapp.com/js/debounce.js"></script>
+    <script type="text/javascript" src="http://fundfeecalculator.herokuapp.com/js/analytics.js"></script>
+    <script type="text/javascript" src="http://fundfeecalculator.herokuapp.com/js/countUp.min.js"></script>
+    <!--<script type="text/javascript" src="http://fundfeecalculator.herokuapp.com/js/superfundcalc.js"></script>-->
+    <script type="text/javascript" src="/js/superfundcalc.js"></script>
+  </head>
+  <body>
+  	<div id="overallWidth" style="">
+    <!-- Main jumbotron for a primary marketing message or call to action -->
+    <div class="jumbotron">
+      <div class="container">
+        <h2>How does yours measure up?</h2>
+        <p>Compare your superfund with the best low cost fund in the market today</p>
+      </div>
+    </div>
+    <div class="container">
+      <!-- Begin form -->
+      <div class="row">
+
+        <div class="col-sm-6 col-md-6"> <!-- start input -->
+	
+		  <form id="fundDetailsForm" class="form-horizontal" role="form" onsubmit="return false;">
+		  	<div class="form-group">
+				<label for="superfund" class="col-md-4 control-label">Your Superfund</label>
+				<div class="col-md-8">
+					<select id="superfund" name="superfund" class="form-control">
+					</select>
+		      		</div>
+			</div>
+		
+		    	<div class="form-group">
+		      		<label for="howMuch" class="col-xs-6 control-label">Total Fees per Year %</label>
+		      		<div class="col-xs-6">
+		      			<input type="text" class="form-control" name="percentageFeesPerYear" id="percentageFeesPerYear" value="" required>
+		      		</div>
+		    	</div>
+
+		    	<div class="form-group">
+		      		<label for="howMuch" class="col-xs-6 control-label">Fixed Fee Per Year $</label>
+		      		<div class="col-xs-6">
+		      			<input type="text" class="form-control" name="fixedFeesPerYear" id="fixedFeesPerYear" value="" required>
+		      		</div>
+		    	</div>
+
+		    	<div class="form-group">
+		      		<label for="salary" class="col-xs-6 control-label">Yearly Salary $</label>
+		      		<div class="col-xs-6">
+		      			<input type="text" class="form-control" name="salary" id="salary" value="60000" required>
+		      		</div>
+		    	</div>
+
+		    	<div class="form-group">
+		      		<label for="howMuch" class="col-xs-6 control-label">Initial Investment $</label>
+		      		<div class="col-xs-6">
+		      			<input type="text" class="form-control" name="initialInvestmentAmount" id="initialInvestmentAmount" value="20000" required>
+		      		</div>
+		    	</div>
+
+		    	<div class="form-group">
+			      <label for="extra" class="col-xs-6 control-label">Additional Yearly Contribution $</label>
+			      <div class="col-xs-6">
+			      	<input type="text" class="form-control" name="contribution" id="contribution" value="0" required>
+			      </div>
+   			</div>
+
+			<div class="form-group">
+			      <label for="years" class="col-xs-6 control-label">Your Current Age</label>
+			      <div class="col-xs-6">
+			      	<input type="number" class="form-control" name="startAge" id="startAge" value="30" required min="0" max="100" step="1">
+			      </div>
+		    	</div>
+
+		    	<div class="form-group">
+		      		<label for="years" class="col-xs-6 control-label">Your Retirement Age</label>
+		      		<div class="col-xs-6">
+			      		<input type="number" class="form-control" name="endAge" id="endAge" value="67" required min="0" max="100" step="1">
+				</div>
+			</div>
+
+		    	<div class="form-group">
+		    		<div class="col-md-offset-6 col-md-6">
+				        <button type="submit" class="btn btn-primary btn-lg btn-block" id="calculateButton">Compare</button>
+				</div>
+			</div>
+		  </form>
+
+		<div class="row">		
+
+			<div class="col-md-6 col-lg-4">
+				<p class="calculatorBox">
+				Your fund size
+				<span class="calculatorAmount">$<span id="totalWithFees"></span></span>
+				</p>
+			</div>
+
+			<div class="col-md-6 col-lg-4">
+				<p class="calculatorBox">
+				Low cost fund size<span class="calculatorAmount">$<span id="totalWithoutFees"></span></span>
+				</p>
+			</div>
+
+			<div class="col-md-6 col-lg-4">
+				<p class="calculatorBox">
+				Have this much more<span class="calculatorAmount">$<span id="difference"></span></span>
+				</p>
+			</div>
+
+
+		</div>
+	
+	</div> <!-- end input -->
+
+
+        <div class="col-sm-6 col-md-6"> <!-- start chart -->
+		<div id="chart_div" style="height: 500px;"></div>
+       </div><!-- end chart -->
+
+      </div><!-- end row -->
+
+      <div class="row">
+	&nbsp;
+      </div>
+
+      <div class="row">
+	<div class="col-sm-6 col-md-6">
+		<h3>How much more could you have in retirement?</h3>	
+		<p>
+		Now you can clearly see the difference between your fund and the best low cost fund available today, we think you'll agree that Aussie's are being ripped off to the tune of hundreds of thousands of dollars.
+		</p>
+		<p>
+		It is quite simply disgraceful that the superannuation funds take so much from your nest egg for doing so little. 
+		</p>
+	</div>
+	<div class="col-sm-6 col-md-6">	
+		<p>
+		<h3>What can you do about it?</h3>
+		The good news is that you don't have to take it. By switching to a low cost fund like the one we have used in our comparison here, you can easily give yourself a much bigger sum to keep you and your family into old age. Switching superfunds takes a matter of hours!
+		</p>
+		<h3>Which is the lowest cost fund in the market today?</h3>
+		<p>
+		For a very very small fee we will tell you in our <a href="/superripoff">Super Ripoff illustration</a>
+		</p>
+      </div>
+    </div>
+
+      <div class="row">
+	&nbsp;
+      </div>
+
+
+    <!-- /container -->
+    </div>
+  </body>
+
+</html>

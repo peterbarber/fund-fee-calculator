@@ -1,0 +1,136 @@
+.jumbotron {
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+
+h1, h2, h3, h4, h5{
+	font-family: "Crete Round", Arial, sans-serif;
+	font-style: normal;
+	font-weight: normal;
+	color: #2a858e;
+}
+
+body{
+	font-family: "Open Sans", Verdana, Geneva, sans-serif;
+	font-size: 14px;
+	font-size: 1.4rem;
+	line-height: 22px;
+	line-height: 2.2rem;
+	font-weight: normal;
+	font-style: normal;
+	color: #666666;
+	
+	/* Stop mobile browsers from resizing type */
+	-ms-text-size-adjust: none;
+    -webkit-text-size-adjust: none;
+}
+
+
+form label{
+	display: block;
+	font-weight: normal;
+	text-transform: none;
+	color: #666666;
+	line-height: 32px;
+	
+}
+
+.form-group {
+	margin-bottom: 2px;
+}
+
+label, 
+select,
+input[type="text"],
+input[type="password"],
+input[type="tel"],
+input[type="email"],
+input[type="number"],
+textarea{
+	font-family: "Open Sans", Verdana, Geneva, sans-serif;
+	color: #666666;
+	font-size: 13px;
+	/*font-size: 1.3rem;*/
+}
+
+
+.calculatorBox{
+	background: #e7e7e5;
+	padding: 15px 15px 20px 15px;
+	position: relative;
+	
+	font-size: 14px;
+	line-height: 1.5em;
+	
+	margin-top: 22px;
+	margin-top: 2.2rem;
+}
+
+.calculatorAmount{
+	display: block;
+	margin-top: 5px;
+	padding-bottom: 5px;
+	color: #223d60;
+	font-family: "Crete Round", Arial, sans-serif;
+	font-size: 30px;
+}
+
+#carImage{
+	position: relative;
+	float: right;
+	margin: -15px 15px 0 10px;
+	width: 120px;
+	height: auto;
+}
+
+#chart_div{
+	margin-right: 15px;
+}
+
+
+
+input[type="submit"], input[type="button"], #other_discount_code_button, #discount_code_button, button{
+	display: block;
+	height: 43px;
+	height: 4.3rem;
+	
+	line-height: 43px;
+	line-height: 4.3rem;
+	padding: 0 20px;
+	padding: 0 2rem;
+
+	background: #233f63;
+	background: linear-gradient(#233f63,#162b46);
+	
+	border: 1px solid #0d1a2a;
+	
+	-webkit-border-radius: 1rem;
+	-moz-border-radius: 1rem;
+	-o-border-radius: 1rem;
+	border-radius: 1rem;
+	
+	-o-box-shadow: inset 0 0.1rem 0.2rem rgba(132,186,255,0.6);
+	-moz-box-shadow: inset 0 0.1rem 0.2rem rgba(132,186,255,0.6);
+	-webkit-box-shadow: inset 0 0.1rem 0.2rem rgba(132,186,255,0.6);
+	box-shadow: inset 0 0.1rem 0.2rem rgba(132,186,255,0.6);
+
+
+	font-family: "Crete Round", Arial, sans-serif;
+	color: white;
+	font-weight: normal;
+	font-style: normal;
+	font-size: 20px;
+	font-size: 2rem;
+	text-decoration: none;
+	text-align: left;
+	line-height: 43px;
+	line-height: 4.3rem;
+	
+	-webkit-text-shadow: 0 0.1rem 0.2rem rgba(20,65,70,0.6);
+	-moz-text-shadow: 0 0.1rem 0.2rem rgba(20,65,70,0.6);
+	-o-text-shadow: 0 0.1rem 0.2rem rgba(20,65,70,0.6);
+	text-shadow: 0 0.1rem 0.2rem rgba(20,65,70,0.6);
+	
+}
+
+

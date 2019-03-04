@@ -1,0 +1,126 @@
+<!doctype html>
+
+<html>
+
+  <head>
+    <title>Fund Fee Calculator</title>
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+    <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script type="text/javascript" src="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript" src="http://fundfeecalculator.herokuapp.com/js/jquery.number.min.js"></script>
+    <script type="text/javascript" src="http://fundfeecalculator.herokuapp.com/js/debounce.js"></script>
+    <!--<script type="text/javascript" src="http://fundfeecalculator.herokuapp.com/js/fundfeecalculator.js"></script>-->
+    <script type="text/javascript" src="/js/dev/fundfeecalculator.js"></script> <!-- for dev -->
+    <!--<script type="text/javascript" src="/js/fundfeecalculator.js"></script>-->
+  </head>
+
+  <body>
+  	<div id="overallWidth" style="width:600px">
+    <!-- Main jumbotron for a primary marketing message or call to action -->
+    <div class="jumbotron">
+      <div class="container">
+        <h2>How much are fees really costing you?</h2>
+        <p>Enter fund details below to find out how much of your investment is swallowed up in fees.</p>
+      </div>
+    </div>
+    <div class="container">
+      <!-- Begin form and pie chart -->
+      <div class="row">
+        <div class="col-sm-4">
+          <form id="fundDetailsForm" role="form" onsubmit="return false;">
+            <div class="form-group">
+              <label for="howMuch" class="control-label">Initial Investment $</label>
+              <input type="text" class="form-control" name="initial" id="initial" value="10000" required>
+            </div>
+            <div class="form-group">
+              <label for="extra" class="control-label">Yearly Contribution $</label>
+              <input type="text" class="form-control" name="contribution" id="contribution" value="1000" required>
+            </div>
+            <div class="form-group">
+              <label for="years" class="control-label">Your Current Age</label>
+              <input type="number" class="form-control" name="startAge" id="startAge" value="40" required min="0" max="100" step="1">
+            </div>
+            <div class="form-group">
+              <label for="years" class="control-label">Your Retirement Age</label>
+              <input type="number" class="form-control" name="endAge" id="endAge" value="65" required min="0" max="100" step="1">
+            </div>
+            <div class="form-group">
+              <label for="fees" class="control-label">Total Fees % pa</label>
+              <input type="number" class="form-control" name="fees" id="fees" value="2.0" required min="0" max="10.0" step="0.01">
+            </div>
+            <div class="form-group">
+              <label for="yield" class="control-label">Fund Growth % pa</label>
+              <input type="number" class="form-control" name="yield" id="yield" value="8.0" required min="0" max="30.0" step="0.1">
+            </div>
+            <div class="form-group last">
+                <button type="submit" class="btn btn-primary btn-sm btn-block" id="calculateButton">Calculate</button>
+            </div>
+          </form>
+        </div>
+        <div class="col-sm-8">
+          <div id="piechart_3d" style="height: 330px;">
+          </div>
+        </div>
+      </div>
+	  <div class="row">
+		<p>
+		Your total fund at retirement will be <strong>$<span id="totalWithFees"></span></strong>.
+		</p>
+		<p>
+		Without fees the total value of your fund would have been <strong>$<span id="totalWithoutFees"></span></strong>
+		</p>
+		<p>
+		<span id="feeText">You have paid for your fund manager's new car <img id="carImage" /> with fees of </span> <strong>$<span id="totalFees"></span></strong>
+		</p>
+	  </div>
+
+	  <h3>How fees reduce your fund size over time</h3>
+      <div class="row">
+        <div id="chart_div" style="height: 500px;"></div>
+      </div>
+	<div>
+<p>
+Fees are an all too serious problem.
+</p>
+<p>
+The financial industry throws millions of dollars (of your fees) at advertising trying to keep their little 
+secret from getting out. 
+</p>
+<p>
+But the real challenge is <strong>apathy</strong>. Investors know that they should do better with their finances, but 
+it's hard to be urgent about something so far in the future.
+</p>
+<p>
+As you can see from your calculations above, an <strong>X</strong> % fee translates into an X % reduction in the value of your investments by age <strong>$<span id="endAge"></span></strong>.
+</p>
+<p>
+But it does not have to be that way. 
+</p>
+<p>
+You can take the steps today that will <strong>reverse the impact of compounding costs</strong> and start you on the road to financial freedom by joining SpoonFed Investor
+</p>
+<p>
+SpoonFed Investor is the smart alternative for investors who want to reduce their fees by 90% or more. 
+</p>
+<p>
+And it does not stop there. On top of best practices in fee reduction, you receive a clear path towards investment success by following the methods and principles of the world's top investors and traders. 
+</p>
+<p>
+Come'on, it's time to step outside the financial matrix and take-charge of your finances. 
+</p>
+<p>
+Click here: 
+</p>
+
+<a href="">Start a better way to invest today</a>
+	</div>
+
+    </div>
+    <!-- /container -->
+    </div>
+  </body>
+
+</html>

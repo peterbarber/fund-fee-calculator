@@ -1,0 +1,137 @@
+<!doctype html>
+
+<html>
+
+  <head>
+    <title>Fee Cost Calculator</title>
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+    <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/calculator.css">
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script type="text/javascript" src="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript" src="http://fundfeecalculator.herokuapp.com/js/jquery.number.min.js"></script>
+    <script type="text/javascript" src="http://fundfeecalculator.herokuapp.com/js/debounce.js"></script>
+    <script type="text/javascript" src="http://fundfeecalculator.herokuapp.com/js/analytics.js"></script>
+    <!--<script type="text/javascript" src="http://fundfeecalculator.herokuapp.com/js/fundfeecalculator.js"></script>-->
+    <script type="text/javascript" src="/js/fundfeecalculator.js"></script>
+  </head>
+
+  <body>
+  	<div id="overallWidth" style="width:660px">
+    <!-- Main jumbotron for a primary marketing message or call to action -->
+    <div class="jumbotron">
+      <div class="container">
+      	<h1>Fee Cost Calculator<h1>
+        <h2>How much are fees really costing you?</h2>
+        <p>Enter fund details below to find out how much of your investment is swallowed up in fees.</p>
+      </div>
+    </div>
+    <div class="container">
+      <!-- Begin form and pie chart -->
+      <div class="row">
+        <div class="col-sm-6">
+          <form id="fundDetailsForm" class="form-horizontal" role="form" onsubmit="return false;">
+            <div class="form-group">
+              <label for="howMuch" class="col-sm-8 control-label">Initial Investment $</label>
+              <div class="col-sm-4">
+              	<input type="text" class="form-control" name="initial" id="initial" value="10000" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="extra" class="col-sm-8 control-label">Yearly Contribution $</label>
+              <div class="col-sm-4">
+              	<input type="text" class="form-control" name="contribution" id="contribution" value="1000" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="years" class="col-sm-8 control-label">Your Current Age</label>
+              <div class="col-sm-4">
+              	<input type="number" class="form-control" name="startAge" id="startAge" value="40" required min="0" max="100" step="1">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="years" class="col-sm-8 control-label">Your Retirement Age</label>
+              <div class="col-sm-4">
+	              <input type="number" class="form-control" name="endAge" id="endAge" value="65" required min="0" max="100" step="1">
+	          </div>
+            </div>
+            <div class="form-group">
+              <label for="fees" class="col-sm-8 control-label">Total Fees % pa</label>
+              <div class="col-sm-4">
+              	<input type="number" class="form-control" name="fees" id="fees" value="2.0" required min="0" max="10.0" step="0.01">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="yield" class="col-sm-8 control-label">Fund Growth % pa</label>
+              <div class="col-sm-4">
+	              <input type="number" class="form-control" name="yield" id="yield" value="8.0" required min="0" max="30.0" step="0.1">
+	          </div>
+            </div>
+            <div class="form-group last">
+            <div class="col-sm-offset-6 col-sm-6">
+                <button type="submit" class="btn btn-primary btn-lg btn-block" id="calculateButton">Calculate</button>
+            </div>
+            </div>
+          </form>
+        </div>
+        <div class="col-sm-6">
+          <div id="piechart_3d" style="height: 330px;">
+          </div>
+        </div>
+      </div>
+	  <div class="row">
+	  	<div class="col-sm-6">
+			<p class="calculatorBox">
+			Your total fund at<br> retirement will be
+			<span class="calculatorAmount">$<span id="totalWithFees"></span></span>
+			</p>
+		</div>
+		<div class="col-sm-6">
+			<p class="calculatorBox">
+			Without fees the total value of your fund would have been <span class="calculatorAmount">$<span id="totalWithoutFees"></span></span>
+			</p>
+		</div>
+	   </div>
+	   <div class="row">
+	  	<div class="col-sm-12">
+			<p class="calculatorBox">
+			<span id="feeText">You have paid for your fund manager's new car <img id="carImage" /> with fees of </span>
+			<span class="calculatorAmount">$<span id="totalFees"></span></span>
+			</p>
+		</div>
+	   </div>
+
+	  <h3>How fees reduce your fund size over time</h3>
+      <div class="row">
+        <div id="chart_div" style="height: 500px;"></div>
+      </div>
+
+	<div id="whatToDoABoutHighFees">
+	</div>
+
+	<h2>So what can you do about it?</h2>
+		<p>
+		The shocking truth about fees is that they make a serious dent in your overall return over time.
+		</p>
+		<p>
+		The financial industry throws millions of dollars (of your fees) at advertising trying to keep their little
+		secret from getting out.
+		</p>
+		<p>
+		But the real challenge is <strong>apathy</strong>. Investors know that they should do better with their finances, but
+		it's hard to be urgent about something so far in the future.
+		</p>
+		<p>
+		As you can see from your calculations above, a <strong><span id="feeValueText"></span></strong>% fee translates into an <strong><span id="totalFeesPercent"></span></strong>% reduction in the value of your investments by age <strong><span id="endAgeText"></span></strong>.
+		</p>
+
+		<a href="http://yourwebsitehere">Promotional link here</a>
+
+    </div>
+    <!-- /container -->
+    </div>
+  </body>
+
+</html>
