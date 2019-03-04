@@ -1,5 +1,5 @@
 # fund-fee-calculator
-Calculates the effect fees have on your total percentage returns
+Calculates and illustrates the effect fees have on your total percentage returns.
 
 Technical Details:
 - Runs on Heroku
@@ -11,3 +11,5 @@ Technical Details:
 
 See in action on:
 - http://baldmoney.com/investment-fees-calculator/
+
+
